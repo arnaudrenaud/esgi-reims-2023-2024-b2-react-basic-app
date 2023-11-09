@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [count, setCount] = useState(0);
+  const [isError, setIsError] = useState(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      Compteur : {count}
+      <div>
+        <button
+          onClick={function () {
+            if (count > 0) {
+              setCount(count - 1);
+            } else {
+              setIsError(true);
+            }
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          -
+        </button>
+        <button
+          onClick={function () {
+            setCount(count + 1);
+            setIsError(false);
+          }}
+        >
+          +
+        </button>
+        {isError === true ? (
+          <div className="App-error">La valeur doit être positive</div>
+        ) : null}
+      </div>
     </div>
   );
 }
