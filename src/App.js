@@ -2,6 +2,7 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
 import "./App.css";
 import Counter from "./Counter";
+import Names from "./Names";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       </nav>
       <Routes>
         <Route path="/" element={<Counter />} />
-        <Route path="/names" element={<div>Names</div>} />
+        <Route path="/names" element={<Names />} />
       </Routes>
     </BrowserRouter>
   );
