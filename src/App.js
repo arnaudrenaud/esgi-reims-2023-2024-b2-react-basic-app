@@ -1,38 +1,20 @@
-import { useState } from "react";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+
 import "./App.css";
+import Counter from "./Counter";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [isError, setIsError] = useState(false);
-
   return (
-    <div className="App">
-      Compteur : {count}
-      <div>
-        <button
-          onClick={function () {
-            if (count > 0) {
-              setCount(count - 1);
-            } else {
-              setIsError(true);
-            }
-          }}
-        >
-          -
-        </button>
-        <button
-          onClick={function () {
-            setCount(count + 1);
-            setIsError(false);
-          }}
-        >
-          +
-        </button>
-        {isError === true ? (
-          <div className="App-error">La valeur doit être positive</div>
-        ) : null}
-      </div>
-    </div>
+    <BrowserRouter>
+      <nav className="App-navigation">
+        <Link to="/">Compteur</Link>
+        <Link to="/names">Générateur de noms</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Counter />} />
+        <Route path="/names" element={<div>Names</div>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
