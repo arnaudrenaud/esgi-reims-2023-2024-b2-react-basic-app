@@ -1,35 +1,11 @@
-import { useState } from "react";
-
-function Counter() {
-  const [count, setCount] = useState(0);
-  const [isError, setIsError] = useState(false);
-
+function Counter({ count, onClickMinus, onClickPlus, errorMessage }) {
   return (
     <div className="App">
       Compteur : {count}
       <div>
-        <button
-          onClick={function () {
-            if (count > 0) {
-              setCount(count - 1);
-            } else {
-              setIsError(true);
-            }
-          }}
-        >
-          -
-        </button>
-        <button
-          onClick={function () {
-            setCount(count + 1);
-            setIsError(false);
-          }}
-        >
-          +
-        </button>
-        {isError === true ? (
-          <div className="App-error">La valeur doit être positive</div>
-        ) : null}
+        <button onClick={onClickMinus}>-</button>
+        <button onClick={onClickPlus}>+</button>
+        {errorMessage ? <div className="App-error">{errorMessage}</div> : null}
       </div>
     </div>
   );
